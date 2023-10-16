@@ -34,4 +34,13 @@ class Employee extends Model
 
     }
 
+    public function rpeople(): HasMany
+    {
+        return $this->hasMany(Rperson::class);
+    }
+    public function fmember(): HasMany
+    {
+        return $this->hasMany(Fmember::class);
+    }
+
 }

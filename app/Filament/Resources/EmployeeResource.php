@@ -181,7 +181,7 @@ class EmployeeResource extends Resource
 
                                 ])->columns(3),
                         ]),
-                    Step::make('Education Info')
+                    Step::make('Background Info')
                         ->schema([
                             Repeater::make('education')
                                 ->label('Education')
@@ -232,6 +232,62 @@ class EmployeeResource extends Resource
                                         Accepts.docx,doc,pdf up to 5MB')
                                         ->columnSpan(4),
                                 ])->columns(6),
+                            Repeater::make('rpeople')
+                                ->label('Reference Person')
+                                ->relationship()
+                                ->schema([
+                                    TextInput::make('name')
+                                        ->label('Reference Person Name')
+                                        ->placeholder('U Ye Htet')
+                                        ->live(onBlur: true),
+
+                                    TextInput::make('position')
+                                        ->label('Job Position')
+                                        ->placeholder('Position')
+                                        ->live(onBlur: true),
+                                    TextInput::make('email')
+                                        ->label('Email')
+                                        ->placeholder('mtz@za.com.mm')
+                                        ->live(onBlur: true),
+                                    TextInput::make('phone_no')
+                                        ->label('Phone')
+                                        ->placeholder('09456785669')
+                                        ->live(onBlur: true),
+                                ])->columns(4),
+                            Repeater::make('fmember')
+                                ->label('Reference Person')
+                                ->relationship()
+                                ->schema([
+                                    TextInput::make('name')
+                                        ->label('Reference Person Name')
+                                        ->placeholder('Family Member Name')
+                                        ->live(onBlur: true),
+
+                                    TextInput::make('relationship')
+                                        ->label('Relationship')
+                                        ->placeholder('Relationship')
+                                        ->live(onBlur: true),
+                                    DatePicker::make('date_of_birth')
+                                        ->label('Date of Birth')
+                                        ->placeholder('Date of Birth')
+                                        ->live(onBlur: true),
+
+                                    TextInput::make('occupation')
+                                        ->label('Occupation')
+                                        ->placeholder('Occupation')
+                                        ->live(onBlur: true),
+                                    TextInput::make('phone_no')
+                                        ->label('Contact Number')
+                                        ->placeholder('Contact Number')
+                                        ->live(onBlur: true),
+
+                                    TextInput::make('address')
+                                        ->label('Contact Address')
+                                        ->placeholder('Contact Address')
+                                        ->live(onBlur: true)
+                                        ->columnSpan(3),
+
+                                ])->columns(4),
                         ]),
                     Step::make('Address')
                         ->schema([
