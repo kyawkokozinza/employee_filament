@@ -29,9 +29,9 @@ return new class extends Migration
             $table->string('hphone_no')->unique();
             $table->string('phone_no')->unique();
             $table->string('url');
-            $table->foreignId('nrcs_id')->constrained('nrcs')->cascadeOnDelete();
-            $table->foreignId('nrcs_n')->constrained('nrcs')->cascadeOnDelete();
-            $table->string('type');
+            $table->foreignId('nrcs_id')->constrained('nrcs')->cascadeOnDelete();//1-14
+            $table->foreignId('nrcs_n')->constrained('nrcs')->cascadeOnDelete();//BaKala
+            $table->string('type');//N P
             $table->integer('nrc_num')->unique();
             $table->timestamps();
         });

@@ -42,31 +42,30 @@ class EmployeeResource extends Resource
                                 ->schema([
                                     TextInput::make('name_e')
                                         ->label('Employee Name(English)')
+                                        ->required()
 
                                         ->live(onBlur: true),
                                     TextInput::make('name_m')
                                         ->label('Employee Name(Myanmar)')
-
+                                        ->required()
                                         ->live(onBlur: true),
+
                                     TextInput::make('father_name')
                                         ->label('Father Name')
-
+                                        ->required()
                                         ->live(onBlur: true),
 
                                     DatePicker::make('date_of_birth')
-                                        ->label('Date of Birth'),
+                                        ->label('Date of Birth')
+                                        ->required(),
 
                                     TextInput::make('race')
                                         ->label('Race')
+                                        ->required()
                                         ->live(onBlur: true),
+
                                     Select::make('religion')
                                         ->options([
-                                            // "Buddhist" => ReligionEnum::BUDDHISM->value,
-                                            // "Christianity" => ReligionEnum::CHRISTIANITY->value,
-                                            // "Islam" => ReligionEnum::ISLAM->value,
-                                            // "Hunduism" => ReligionEnum::HINDUISM->value,
-                                            // "Other" => ReligionEnum::OTHER->value,
-                                            // "No Religion" => ReligionEnum::NORELIGION->value,
                                             "Buddhist" => "Buddhist",
                                             "Christianity" => "Christianity",
                                             "Islam" => "Islam",
@@ -78,14 +77,6 @@ class EmployeeResource extends Resource
 
                                     Select::make('nationality')
                                         ->options([
-                                            // "Kachin" => NationalityEnum::KACHIN->value,
-                                            // "Kayah" => NationalityEnum::KAYAH->value,
-                                            // "Kayin" => NationalityEnum::KAYIN->value,
-                                            // "Chin" => NationalityEnum::CHIN->value,
-                                            // "Burma" => NationalityEnum::BURMA->value,
-                                            // "Mon" => NationalityEnum::MON->value,
-                                            // "Rakhine" => NationalityEnum::RAKHINE->value,
-                                            // "Shan" => NationalityEnum::SHAN->value,
                                             "Kachin" => "Kachin",
                                             "Kayah" => "Kayah",
                                             "Kayin" => "Kayin",
@@ -97,19 +88,19 @@ class EmployeeResource extends Resource
                                         ]),
                                     Select::make('vacancy')
                                         ->options([
-                                            // "Junior Web Developer" => VacancyEnum::JUNIORWEBDEVELOPER->value,
-                                            // "Web Developer" => VacancyEnum::WEBDEVELOPER->value,
-                                            // "Web Designer" => VacancyEnum::WEBDESIGNER->value,
                                             "Junior Web Developer" => "Junior Web Developer",
                                             "Web Developer" => "Web Developer",
                                             "Web Designer" => "Web Designer",
                                         ]),
+
                                     TextInput::make('passport_no')
                                         ->label('Passport No')
+                                        ->required()
                                         ->live(onBlur: true),
 
                                     TextInput::make('driver_license')
                                         ->label('Driver License')
+                                        ->required()
                                         ->live(onBlur: true),
 
                                     Fieldset::make('NRC')
@@ -121,16 +112,13 @@ class EmployeeResource extends Resource
                                                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('name_en', Nrc::select('name_en')->where('nrc_code', ++$state)->pluck('name_en'))),
 
                                             Select::make('nrcs_n')
-                                                ->label('distinct')
+                                                ->label('Distinct')
                                                 ->options(function ($get) {
                                                     return $get('name_en');}),
 
                                             Select::make('type')
                                                 ->label('Type')
                                                 ->options([
-                                                    // "N" => TypeEnum::N->value,
-                                                    // "P" => TypeEnum::P->value,
-                                                    // "A" => TypeEnum::A->value,
                                                     "N" => "N",
                                                     "P" => "P",
                                                     "A" => "A",
@@ -138,7 +126,9 @@ class EmployeeResource extends Resource
 
                                             TextInput::make('nrc_num')
                                                 ->label('Number')
+                                                ->required()
                                                 ->live(onBlur: true),
+
                                         ])->columns(4)->columnSpan(1),
 
                                     Select::make('gender')
@@ -148,10 +138,6 @@ class EmployeeResource extends Resource
                                         ]),
                                     Select::make('blood')
                                         ->options([
-                                            // "A" => BloodTypeEnum::A->value,
-                                            // "B" => BloodTypeEnum::B->value,
-                                            // "AB" => BloodTypeEnum::AB->value,
-                                            // "O" => BloodTypeEnum::O->value,
                                             "A" => "A",
                                             "B" => "B",
                                             "AB" => "AB",
@@ -159,24 +145,25 @@ class EmployeeResource extends Resource
                                         ]),
                                     Select::make('marital')
                                         ->options([
-                                            // "single" => MaritalStatusEnum::SINGLE->value,
-                                            // "married" => MaritalStatusEnum::MARRIED->value,
                                             "Single" => "Single",
                                             "Married" => "Married",
                                         ]),
 
                                     TextInput::make('hphone_no')
                                         ->label('Home Phone')
-
+                                        ->required()
                                         ->live(onBlur: true),
+
                                     TextInput::make('phone_no')
                                         ->label('Mobile Phone')
-
+                                        ->required()
                                         ->live(onBlur: true),
+
                                     TextInput::make('url')
                                         ->label('URL')
                                         ->placeholder('Social Media Url(eg. facebook,twitter,instagram,etc)')
                                         ->live(onBlur: true)
+                                        ->required()
                                         ->columnSpan(2),
 
                                 ])->columns(3),
@@ -190,16 +177,24 @@ class EmployeeResource extends Resource
                                     TextInput::make('degree')
                                         ->label('Education/Degree')
                                         ->live(onBlur: true)
+                                        ->required()
                                         ->columnSpan(2),
+
                                     DatePicker::make('from_date')
+                                        ->required()
                                         ->label('From'),
+
                                     DatePicker::make('to_date')
+                                        ->required()
                                         ->label('To'),
+
                                     TextInput::make('university')
                                         ->label('School/College/University')
+                                        ->required()
                                         ->live(onBlur: true)
                                         ->columnSpan(2),
                                 ])->columns(6),
+
                             Repeater::make('work')
                                 ->label('Work Experience')
                                 ->relationship()
@@ -207,86 +202,114 @@ class EmployeeResource extends Resource
                                     TextInput::make('title')
                                         ->label('Job Title')
                                         ->live(onBlur: true)
+                                        ->required()
                                         ->columnSpan(2),
+
                                     TextInput::make('company')
                                         ->label('Company Name')
+                                        ->required()
                                         ->live(onBlur: true)
                                         ->columnSpan(2),
+
                                     DatePicker::make('from_date')
+                                        ->required()
                                         ->label('From'),
+
                                     DatePicker::make('to_date')
+                                        ->required()
                                         ->label('To'),
+
                                     TextInput::make('employer_phno')
                                         ->label('Employer Contact')
                                         ->placeholder('Employer Contact eg.(09876765423)')
+                                        ->required()
                                         ->live(onBlur: true)
                                         ->columnSpan(2),
+
                                     TextInput::make('employer_address')
                                         ->label('Employer Address')
                                         ->placeholder('Employer Address')
+                                        ->required()
                                         ->live(onBlur: true)
                                         ->columnSpan(4),
+
                                     FileUpload::make('attachment')
                                         ->label('Select Attachment')
+                                        ->required()
                                         ->hint('
                                         Accepts.docx,doc,pdf up to 5MB')
                                         ->columnSpan(4),
                                 ])->columns(6),
+
                             Repeater::make('rpeople')
                                 ->label('Reference Person')
                                 ->relationship()
                                 ->schema([
                                     TextInput::make('name')
+                                        ->required()
                                         ->label('Reference Person Name')
                                         ->placeholder('U Ye Htet')
                                         ->live(onBlur: true),
 
                                     TextInput::make('position')
+                                        ->required()
                                         ->label('Job Position')
                                         ->placeholder('Position')
                                         ->live(onBlur: true),
+
                                     TextInput::make('email')
                                         ->label('Email')
+                                        ->required()
                                         ->placeholder('mtz@za.com.mm')
                                         ->live(onBlur: true),
+
                                     TextInput::make('phone_no')
+                                        ->required()
                                         ->label('Phone')
                                         ->placeholder('09456785669')
                                         ->live(onBlur: true),
                                 ])->columns(4),
+
                             Repeater::make('fmember')
                                 ->label('Reference Person')
                                 ->relationship()
                                 ->schema([
                                     TextInput::make('name')
+                                        ->required()
                                         ->label('Reference Person Name')
                                         ->placeholder('Family Member Name')
                                         ->live(onBlur: true),
 
                                     TextInput::make('relationship')
+                                        ->required()
                                         ->label('Relationship')
                                         ->placeholder('Relationship')
                                         ->live(onBlur: true),
+
                                     DatePicker::make('date_of_birth')
+                                        ->required()
                                         ->label('Date of Birth')
                                         ->placeholder('Date of Birth')
                                         ->live(onBlur: true),
 
                                     TextInput::make('occupation')
+                                        ->required()
                                         ->label('Occupation')
                                         ->placeholder('Occupation')
                                         ->live(onBlur: true),
+
                                     TextInput::make('phone_no')
+                                        ->required()
                                         ->label('Contact Number')
                                         ->placeholder('Contact Number')
                                         ->live(onBlur: true),
 
                                     TextInput::make('address')
+                                        ->required()
                                         ->label('Contact Address')
                                         ->placeholder('Contact Address')
                                         ->live(onBlur: true)
                                         ->columnSpan(3),
-
                                 ])->columns(4),
                         ]),
                     Step::make('Address')
@@ -296,18 +319,25 @@ class EmployeeResource extends Resource
                                 ->relationship()
                                 ->schema([
                                     TextInput::make('country')
+                                        ->required()
                                         ->label('Country')
                                         ->live(onBlur: true)
                                         ->columnSpan(2),
+
                                     TextInput::make('state')
+                                        ->required()
                                         ->label('State')
                                         ->live(onBlur: true)
                                         ->columnSpan(2),
+
                                     TextInput::make('township')
+                                        ->required()
                                         ->label('Township')
                                         ->live(onBlur: true)
                                         ->columnSpan(2),
+
                                     TextInput::make('street')
+                                        ->required()
                                         ->label('Street')
                                         ->live(onBlur: true)
                                         ->columnSpan(2),
