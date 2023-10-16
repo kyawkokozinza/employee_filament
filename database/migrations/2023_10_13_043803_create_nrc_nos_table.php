@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('nrc_nos', function (Blueprint $table) {
             $table->id();
-            $table->string('name_e');
-            $table->string('name_m');
-            $table->string('father_name');
-            $table->date('date_of_birth');
+            $table->foreignId('nrc_code')->constrained('nrcs')->cascadeOnDelete();
+            $table->foreignId('name_en')->constrained('nrcs')->cascadeOnDelete();
+            $table->integer('nrc_num')->unique();
+            $table->enum('type', ['N', 'P', 'A'])
+                ->default('N');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('nrc_nos');
     }
 };

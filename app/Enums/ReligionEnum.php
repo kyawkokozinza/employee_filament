@@ -3,11 +3,11 @@
 namespace App\Enums;
 
 enum ReligionEnum: string {
-    case BUDDHISM = "buddhist";
-    case CHRISTIANITY = "chrisianity";
-    case ISLAM = "islam";
-    case HINDUISM = "hunduism";
-    case OTHER = "other";
-    case NORELIGION = "no_religion";
+    case BUDDHISM = "Buddhist";
+    case CHRISTIANITY = "Christianity";
+    case ISLAM = "Islam";
+    case HINDUISM = "Hunduism";
+    case OTHER = "Other";
+    case NORELIGION = "No Religion";
 
 }

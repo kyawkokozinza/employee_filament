@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('township')->nullable();
+            $table->string('street')->nullable();
+            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('n_r_c_s', function (Blueprint $table) {
+        Schema::create('nrcs', function (Blueprint $table) {
             $table->id();
+            $table->string('name_en');
+            $table->string('name_mm');
+            $table->integer('nrc_code');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('n_r_c_s');
+        Schema::dropIfExists('nrcs');
     }
 };
